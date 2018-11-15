@@ -1,0 +1,96 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+
+
+<div>
+  <!-- <p appHighlight="{{color}}">Highlight me!</p>
+  <p [appHighlight]="color">Highlighted in orange</p> -->
+
+  <h2>Highlight Directive</h2>
+
+  <h4>Pick a highlight color</h4>
+  <div>
+    <input type="radio" name="colors" (click)="color='lightgreen'">Green
+    <input type="radio" name="colors" (click)="color='yellow'">Yellow
+    <input type="radio" name="colors" (click)="color='cyan'">Cyan
+  </div>
+  <p [appHighlight]="color">Highlight me!</p>
+</div>
+
+<div>
+    <h2 id="appUnless">UnlessDirective</h2>
+    <p>
+      The condition is currently
+      <span [ngClass]="{ 'a': !condition, 'b': condition, 'unless': true }">{{condition}}</span>.
+      <button
+        (click)="condition = !condition"
+        [ngClass] = "{ 'a': condition, 'b': !condition }" >
+        Toggle condition to {{condition ? 'false' : 'true'}}
+      </button>
+    </p>
+    <p *appUnless="condition" class="unless a">
+      (A) This paragraph is displayed because the condition is false.
+    </p>
+
+    <p *appUnless="!condition" class="unless b">
+      (B) Although the condition is true,
+      this paragraph is displayed because appUnless is set to false.
+    </p>
+
+
+    <h4>UnlessDirective with template</h4>
+
+    <p *appUnless="condition">Show this sentence unless the condition is true.</p>
+
+    <p *appUnless="condition" class="code unless">
+      (A) &lt;p *appUnless="condition" class="code unless"&gt;
+    </p>
+
+    <ng-template [appUnless]="condition">
+      <p class="code unless">
+        (A) &lt;ng-template [appUnless]="condition"&gt;
+      </p>
+    </ng-template>
+</div>
+
+<div class="parent">
+    <h2>Spy Directive</h2>
+
+    <input [(ngModel)]="newName" (keyup.enter)="addHero()">
+    <button (click)="addHero()">Add Hero</button>
+    <button (click)="reset()">Reset Heroes</button>
+
+    <p></p>
+    <div *ngFor="let hero of heroes" mySpy>
+      {{hero}}
+    </div>
+    <h4>-- Spy Lifecycle Hook Log --</h4>
+    <div *ngFor="let msg of logger.logs">{{msg}}</div>
+</div>
+
+<h2>CpLopp Directive</h2>
+
+<ul>
+    <li *appCpLoop="3" >
+        Namaste
+    </li>
+</ul>
+
+
+<h2>cpDelay Directive</h2>
+<div>
+  Show message after
+  <input type="radio" name="rad2" (click)= "showCpDelay= true; delayInSec = 2000"> 2 Seconds
+  <input type="radio" name="rad2" (click)= "showCpDelay= true; delayInSec = 5000"> 5 Seconds
+  <input type="radio" name="rad2" (click)= "showCpDelay= true; delayInSec = 7000"> 7 Seconds
+</div>
+<br/>
+<div *ngIf="showCpDelay">
+    <div *appCpdelay="delayInSec">
+      <b> Hello World! </b>
+    </div>
+</div>
+
+
+
+
